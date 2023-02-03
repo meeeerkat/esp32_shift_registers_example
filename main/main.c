@@ -5,10 +5,17 @@
 
 static const char *TAG = "MAIN";
 
+
+
+shift_register_t sr;
+
+
 void app_main(void)
 {
     init_shift_registers_handling();
 
-    shift_register_t sr = shift_register__create(16, 17, 18, 8);
-    shift_register__send(sr, 0xF0);
+
+    shift_register__init(&sr, 16, 17, 18, 8);
+    // Bits [7,4] at 1, others at 0
+    shift_register__send(&sr, 0xF0);
 }
